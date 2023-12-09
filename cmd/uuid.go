@@ -1,10 +1,9 @@
 package cmd
 
 import (
-	uuid "github.com/jorgerodrigues/devgo/pkg"
+	"github.com/jorgerodrigues/devgo/pkg/uuid"
 	"github.com/spf13/cobra"
 )
-
 
 var uuidCmd = &cobra.Command{
 	Use:   "uuid",
