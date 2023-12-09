@@ -38,12 +38,6 @@ func init() {
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-
-	rootCmd.PersistentFlags().StringP("hostsfile", "f", "/etc/hosts", "a custom hostfile path other than /etc/hosts")
-	rootCmd.PersistentFlags().StringSliceP("sites", "s", []string{}, "sites to operate on")
-	rootCmd.MarkFlagRequired("sites")
-	viper.BindPFlag("sites", rootCmd.PersistentFlags().Lookup("sites"))
-	viper.BindPFlag("hostsfile", rootCmd.PersistentFlags().Lookup("hostsfile"))
 }
 
 // initConfig reads in config file and ENV variables if set.
@@ -51,17 +45,7 @@ func initConfig() {
 	if cfgFile != "" {
 		// Use config file from the flag.
 		viper.SetConfigFile(cfgFile)
-	} else {
-		// Find home directory.
-		home, err := os.UserHomeDir()
-		cobra.CheckErr(err)
-
-		// Search config in home directory with name ".blocky" (without extension).
-		viper.AddConfigPath(home)
-		viper.SetConfigType("yaml")
-		viper.SetConfigName(".blocky")
 	}
-
 	viper.AutomaticEnv() // read in environment variables that match
 
 	// If a config file is found, read it in.
