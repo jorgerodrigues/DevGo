@@ -3,9 +3,12 @@ package imgBase64
 import (
 	"encoding/base64"
 	"errors"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/atotto/clipboard"
 )
 
 func ImgToBase64(filePath string) (string, error) {
@@ -17,16 +20,31 @@ func ImgToBase64(filePath string) (string, error) {
 
 	// Determine the content type of the image file
 	mimeType := http.DetectContentType(bytes)
+  var base64String string
 	switch mimeType {
 	case "image/jpeg":
-		return jpgToBase64(bytes)
+    base64String, err =  jpgToBase64(bytes)
+    if err != nil {
+      return "", err
+    }
 	case "image/png":
-		return pngToBase64(bytes)
+    base64String, err = pngToBase64(bytes)
+    if err != nil {
+      return "", err
+    }
 	case "image/gif":
-		return gifToBase64(bytes)
+    base64String, err =  gifToBase64(bytes)
+    if err != nil {
+      return "", err
+    }
 	default:
 		return "", errors.New("Unsupported file type")
 	}
+  //copy string to clipboard
+  clipboard.WriteAll(base64String)
+  memorySize := len(base64String)
+  fmt.Printf("Copied to clipboard with siz: %v kb", (memorySize * 8) / 1024)
+  return base64String, nil
 }
 
 func toBase64(imgBytes []byte) string {
