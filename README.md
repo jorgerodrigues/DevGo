@@ -12,7 +12,7 @@ Installation
 
 ## From Source
 Clone the repository
-`git clone https://github.com/jorgerodrigues/devgo.git`
+```git clone https://github.com/jorgerodrigues/devgo.git```
 
 Build the binary
 `cd devgo`
