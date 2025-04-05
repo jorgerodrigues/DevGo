@@ -10,7 +10,7 @@ var imgToBase64 = &cobra.Command{
 	Short: "Converts an image to base64",
 	Long:  `Converts an image to base64`,
 	Run: func(cmd *cobra.Command, args []string) {
-    imgBase64.ImgToBase64(args[0])
+		imgBase64.ImgToBase64(args[0])
 	},
 }
 
