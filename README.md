@@ -1,8 +1,8 @@
 # DevGo - A modern CLI utility belt for developers, built with Go.
 
-DevGo is a streamlined command-line toolkit that provides fast, offline utilities for common developer tasks..
+DevGo is a streamlined command-line toolkit that provides fast, offline utilities for common developer tasks.
 
-Installation
+# Installation
 
 ## From Source
 
